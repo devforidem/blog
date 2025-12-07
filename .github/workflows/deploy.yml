@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
 
     defaults:
       run:
@@ -43,4 +46,4 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           echo "✅ デプロイが完了しました！"
-          echo "🌐 サイトURL: https://blog-dx5.pages.dev/"
+          echo "🌐 サイトURL: https://blog-dx5.pages.dev"
