@@ -1,0 +1,97 @@
+# ==========================================
+# Hugo 基本設定
+# ==========================================
+baseURL = 'https://your-domain.com/'  # 独自ドメインに後で変更してください
+languageCode = 'ja'  # 日本語設定
+title = '技術ブログ'  # ブログタイトル（後で変更可）
+theme = 'PaperMod'  # 使用するテーマ
+
+# ==========================================
+# ビルド設定（高速化・最適化）
+# ==========================================
+[minify]
+  # HTML/CSS/JSを最小化して爆速化
+  disableHTML = false
+  disableCSS = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+
+[outputs]
+  # RSS配信とJSONインデックス生成
+  home = ['HTML', 'RSS', 'JSON']
+
+# ==========================================
+# PaperMod テーマ設定
+# ==========================================
+[params]
+  # ホームページ設定
+  defaultTheme = 'auto'  # auto: システム設定に従う / dark: ダークモード / light: ライトモード
+  ShowReadingTime = true  # 読了時間表示
+  ShowShareButtons = true  # シェアボタン表示
+  ShowPostNavLinks = true  # 前後の記事ナビゲーション
+  ShowBreadCrumbs = true  # パンくずリスト表示
+  ShowCodeCopyButtons = true  # コードブロックにコピーボタン表示
+  ShowRssButtonInSectionTermList = true  # RSSボタン表示
+  ShowToc = true  # 目次表示（記事内）
+
+  # プロフィール設定
+  [params.homeInfoParams]
+    Title = 'ようこそ'
+    Content = '''
+技術的な学びや、開発の記録を残していくブログです。
+
+- DevOps / SRE
+- バックエンド開発
+- インフラ構築
+'''
+
+  # SNS リンク（必要に応じて追加）
+  [[params.socialIcons]]
+    name = 'github'
+    url = 'https://github.com/your-username'  # GitHub URLに変更
+
+  [[params.socialIcons]]
+    name = 'twitter'
+    url = 'https://twitter.com/your-username'  # Twitter URLに変更（任意）
+
+# ==========================================
+# メニュー設定
+# ==========================================
+[menu]
+  [[menu.main]]
+    identifier = 'posts'
+    name = '記事一覧'
+    url = '/posts/'
+    weight = 10  # 表示順序（小さい方が左）
+
+  [[menu.main]]
+    identifier = 'tags'
+    name = 'タグ'
+    url = '/tags/'
+    weight = 20
+
+  [[menu.main]]
+    identifier = 'search'
+    name = '検索'
+    url = '/search/'
+    weight = 30
+
+# ==========================================
+# タクソノミー設定（タグ・カテゴリ）
+# ==========================================
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+# ==========================================
+# マークダウン設定
+# ==========================================
+[markup]
+  [markup.highlight]
+    # シンタックスハイライト設定（コードブロック）
+    style = 'monokai'  # コードハイライトのテーマ
+    lineNos = true  # 行番号表示
+    lineNumbersInTable = true  # テーブル形式で行番号表示
+    noClasses = false  # CSSクラスを使用

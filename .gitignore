@@ -1,0 +1,80 @@
+# ==========================================
+# Hugo 関連
+# ==========================================
+# Hugo のビルド出力（Git管理不要）
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+
+# Hugo キャッシュ
+.hugo_build.lock
+
+# ==========================================
+# 環境変数・機密情報（絶対に Git にコミットしない！）
+# ==========================================
+# infra/claude-provider Part-01/03 で学んだ教訓:
+# 機密情報は GitHub Secrets で管理し、絶対にハードコードしない
+.env
+.env.local
+.env.*.local
+*.secret
+*.key
+*.pem
+credentials.json
+
+# ==========================================
+# OS 関連
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ==========================================
+# エディタ / IDE
+# ==========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+\#*\#
+.\#*
+
+# ==========================================
+# Node.js / npm（使用する場合）
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ==========================================
+# その他
+# ==========================================
+# ログファイル
+*.log
+
+# 一時ファイル
+tmp/
+temp/
+*.tmp
