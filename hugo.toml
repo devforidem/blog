@@ -1,7 +1,7 @@
 # ==========================================
 # Hugo 基本設定
 # ==========================================
-baseURL = 'https://your-domain.com/'  # 独自ドメインに後で変更してください
+baseURL = 'https://blog-dx5.pages.dev/'
 languageCode = 'ja'  # 日本語設定
 title = '技術ブログ'  # ブログタイトル（後で変更可）
 theme = 'PaperMod'  # 使用するテーマ
