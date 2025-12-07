@@ -43,4 +43,4 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           echo "✅ デプロイが完了しました！"
-          echo "🌐 サイトURL: https://my-blog.pages.dev"
+          echo "🌐 サイトURL: https://blog-dx5.pages.dev/"
