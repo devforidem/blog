@@ -1,92 +1,44 @@
-# ==========================================
-# GitHub Actions ワークフロー: Hugo ビルド & Cloudflare Pages デプロイ
-# ==========================================
-# このワークフローは以下のタイミングで実行されます:
-# 1. PR作成/更新時: ビルドのみ実行（エラーチェック）
-# 2. main ブランチへのマージ時: ビルド + Cloudflare Pages へデプロイ
-# ==========================================
-
 name: Deploy to Cloudflare Pages
 
-# トリガー条件
 on:
-  # main ブランチへの push 時に実行
   push:
     branches: [main]
-  # PR 作成/更新時に実行（ビルド確認用）
   pull_request:
 
-# ジョブ定義
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # 実行環境: Ubuntu 最新版
+    runs-on: ubuntu-latest
 
-    # デフォルトシェル設定
     defaults:
       run:
         shell: bash
 
     steps:
-      # ==========================================
-      # Step 1: リポジトリのチェックアウト
-      # ==========================================
-      # submodules: true → Hugo テーマ（PaperMod）を取得
-      # fetch-depth: 0 → 全履歴を取得（Hugo の .GitInfo 用）
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: true
           fetch-depth: 0
 
-      # ==========================================
-      # Step 2: Hugo のセットアップ
-      # ==========================================
-      # hugo-version: latest → 常に最新版を使用
-      # extended: true → Sass/SCSS サポート（PaperMod で必要）
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: 'latest'
           extended: true
 
-      # ==========================================
-      # Step 3: Hugo ビルド
-      # ==========================================
-      # --minify → HTML/CSS/JS を最小化（爆速化）
-      # 成果物は public/ ディレクトリに出力
       - name: Build Hugo site
         run: hugo --minify
 
-      # ==========================================
-      # Step 4: Cloudflare Pages へデプロイ（main ブランチのみ）
-      # ==========================================
-      # PR の場合はビルドのみでデプロイしない
-      # main ブランチへのマージ時のみデプロイ実行
       - name: Deploy to Cloudflare Pages
-        # 条件: push イベント かつ main ブランチの場合のみ実行
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: cloudflare/pages-action@v1
         with:
-          # Cloudflare API トークン（GitHub Secrets から取得）
-          # ⚠️ 重要: 絶対にハードコードしない！
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
-          # Cloudflare アカウント ID（GitHub Secrets から取得）
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
-          # Cloudflare Pages のプロジェクト名
-          # ⚠️ 注意: Cloudflare Pages で作成したプロジェクト名と一致させる
-          projectName: my-blog  # 後で実際のプロジェクト名に変更してください
-
-          # デプロイするディレクトリ（Hugo のビルド出力先）
+          projectName: my-blog
           directory: public
-
-          # Git コミット情報を含める
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
-      # ==========================================
-      # Step 5: デプロイ結果の出力
-      # ==========================================
       - name: Output deployment info
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |

@@ -36,16 +36,8 @@ theme = 'PaperMod'  # 使用するテーマ
   ShowRssButtonInSectionTermList = true  # RSSボタン表示
   ShowToc = true  # 目次表示（記事内）
 
-  # プロフィール設定
-  [params.homeInfoParams]
-    Title = 'ようこそ'
-    Content = '''
-技術的な学びや、開発の記録を残していくブログです。
-
-- DevOps / SRE
-- バックエンド開発
-- インフラ構築
-'''
+  # OGP / Twitter Card 設定
+  images = ['/images/og-default.svg']  # デフォルトOGP画像（記事でimagesを指定すればそちらが優先）
 
   # SNS リンク（必要に応じて追加）
   [[params.socialIcons]]

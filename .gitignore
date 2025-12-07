@@ -78,3 +78,6 @@ yarn.lock
 tmp/
 temp/
 *.tmp
+
+# README（不要）
+README.md
